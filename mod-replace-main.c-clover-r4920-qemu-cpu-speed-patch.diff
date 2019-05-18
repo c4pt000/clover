@@ -1,0 +1,15 @@
+Index: rEFIt_UEFI/Platform/DataHubCpu.c
+===================================================================
+--- rEFIt_UEFI/Platform/DataHubCpu.c	(revision 4920)
++++ rEFIt_UEFI/Platform/DataHubCpu.c	(working copy)
+@@ -383,6 +383,10 @@
+ //      case CPU_MODEL_PENRYN:
+         FrontSideBus = DivU64x32(FrontSideBus, 4);
+         break;
++      case CPU_MODEL_PENRYN: //fix for Penryn Qemu vCPU
++        DBG("Using workaround for Penryn Qemu vCPU in DataHubCpu.c.\n");
++        FrontSideBus = gCPUStructure.FSBFrequency;
++      break;
+       default:
+         break;
+     }
